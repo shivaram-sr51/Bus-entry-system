@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Bus Searching Screen</title>
+</h:head>
+
+<h:body style="align: center;">
+
+	<h:form id="idFrm" enctype="multipart/form-data">
+<div align="center">
+	<h1>
+	 Bus Search Navigation
+	</h1>
+	
+		 <p:messages id="messages" showDetail="true" closable="true"/>
+
+			<p:panelGrid style="width:100%;">
+				<p:row>
+					<p:column styleClass="align:center;" style="align:Center;">
+						<h:outputLabel style="color:blue;font-size:20px;"> Bus Number : </h:outputLabel>
+					</p:column>
+									<p:column styleClass="align:center;" style="align:Center;">
+						<p:inputText value ="#{busEntrtBean.busNo}" required="true" requiredMessage="Driver Name is Manatory"/>
+					</p:column>	
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:commandButton value="SEARCH ENTRY"
+							action="#{busEntrtBean.searchEntry}" update="idSearchBox idSearchBox:idDataTable"></p:commandButton>
+					</p:column>
+					<p:column>
+						<p:commandButton value="CLAR ENTRY" type="clear" action="#{busEntrtBean.clearRecords}"
+						 update="@form messages idSearchBox idSearchBox:idDataTable"></p:commandButton>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+</div>		
+	</h:form>
+	<h:form id="idSearchBox">
+	 							<p:dataTable id="idDataTable" value="#{busEntrtBean.consolidatedList}" var="x" rows="10"
+								paginator="true" rowIndexVar="index"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="10,20,50,100" widgetVar="dataTable"
+								emptyMessage="No data found with given criteria"
+								filteredValue="#{busEntrtBean.filteredList}" filterEvent="enter">
+								<p:column width="20" headerText="Sr. #" sortBy="#{index + 1}">
+               					  <h:outputText value="#{index + 1}" />
+           						</p:column>
+								
+								<p:column width="30" headerText="Action"
+									style="text-align:center;">
+									<h:commandLink title="Edit" styleClass="btn btn-xs btn-default"
+										role="button">
+										<p:outputLabel>EDIT</p:outputLabel>
+										<p:ajax listener="#{busEntrtBean.dmlOpearions(x, 'U')}"
+											process="@this" update="idFrm"
+											 />
+									</h:commandLink>
+									/
+									<h:commandLink title="Edit" styleClass="btn btn-xs btn-default"
+										role="button">
+										<p:outputLabel>DELETE</p:outputLabel>
+										<p:ajax listener="#{busEntrtBean.dmlOpearions(x, 'D')}"
+											process="@this" update="idFrm"
+											 />
+									</h:commandLink>
+								</p:column>
+
+								<p:column headerText="Bus Number" width="50" sortBy="#{x.busNo}" 
+								          filterBy="#{x.busNo}" filterMatchMode="contains">
+               					   <h:outputText value="#{x.busNo}" />
+           						</p:column>	
+
+								<p:column headerText="Bus Type" width="50" sortBy="#{x.busType}" 
+								          filterBy="#{x.busType}" filterMatchMode="contains">
+               					   <h:outputText value="#{x.busType}" />
+           						</p:column>	
+
+								<p:column headerText="Driver Name" width="90" sortBy="#{x.busDriver}" 
+								          filterBy="#{x.busDriver}" filterMatchMode="contains">
+               					   <h:outputText value="#{x.busDriver}" />
+           						</p:column>	
+	  
+	 </p:dataTable>
+	</h:form>s
+</h:body>
+
+</html>

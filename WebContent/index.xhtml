@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+  <title>BUS ENTRY</title>
+</head>
+
+<body>
+<div style="align:center;">
+ <h:form id="idFrm">
+  <h:panelGrid style="align:center;width:100%;">
+    <h:commandLink tile ="Link" action="newUser.xhtml">
+        <h:outputText value ="New User Registration"
+        style="color:red;font-size:25px;">User Registration</h:outputText>
+    </h:commandLink>
+    <br></br>
+    <br></br>
+    <br></br>
+    <h:commandLink tile ="Link" action="existingUser.xhtml">
+        <h:outputText value ="Existing User"
+        style="color:red;font-size:25px;">Existing User Login</h:outputText>
+    </h:commandLink>
+
+  </h:panelGrid>
+ </h:form>
+</div>
+</body>
+
+</html>

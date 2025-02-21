@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>New User Entry</title>
+</h:head>
+
+<h:body style="align: center;">
+
+	<h:form id="idFrm" enctype="multipart/form-data">
+<div align="center">
+	<h1>
+	  Welcome to Register the New Bus System
+	</h1>
+	
+		 <p:messages id="messages" showDetail="true" closable="true"/>
+
+			<p:panelGrid style="width:100%;">
+				<p:row>
+					<p:column styleClass="align:center;" style="align:Center;">
+						<h:outputLabel style="color:blue;font-size:20px;"> Bus Driver : </h:outputLabel>
+					</p:column>
+					<p:column styleClass="align:center;" style="align:Center;">
+						<p:inputText value ="#{busEntrtBean.busDriver}" required="true" requiredMessage="Driver Name is Manatory"/>
+					</p:column>
+					
+				</p:row>
+				<p:row>
+					<p:column styleClass="align:center;" style="align:Center;">
+						<h:outputLabel style="color:blue;font-size:20px;"> Bus Type : </h:outputLabel>
+					</p:column>
+					<p:column>
+						<h:selectOneMenu id="idBusType" value="#{busEntrtBean.busType}">
+							<f:selectItem itemLabel="Select Bus Type" itemValue="" />
+							<f:selectItem itemLabel="AC-SLEEPER" itemValue="AC-SLEEPER" />
+							<f:selectItem itemLabel="AC-SEATER" itemValue="AC-SEATER" />
+							<f:selectItem itemLabel="NON-AC-SLEEPER"
+								itemValue="NON-AC-SLEEPER" />
+							<f:selectItem itemLabel="NON-AC-SEATER" itemValue="NON-AC-SEATER" />
+						</h:selectOneMenu>
+					</p:column>
+				</p:row>
+		
+		
+				<p:row>
+				 <p:column>
+					<h:outputLabel style="color:blue;font-size:20px;"> Remarks / Comments : </h:outputLabel>
+				 </p:column>
+				 <p:column>
+				  <p:inputTextarea value ="#{busEntrtBean.busRemarks}" rows="10" cols="30" autoResize="false"></p:inputTextarea>
+				 </p:column>
+				</p:row>				
+				<p:row>
+					<p:column>
+						<p:commandButton value="SAVE ENTRY"
+							action="#{busEntrtBean.dmlOperations('N')}" update="@form messages"></p:commandButton>
+					</p:column>
+					<p:column>
+						<p:commandButton value="CLAR ENTRY" type="clear" action="#{busEntrtBean.clearRecords}"
+						 update="@form messages"></p:commandButton>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+</div>		
+	</h:form>
+</h:body>
+
+</html>
